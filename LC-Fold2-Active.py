@@ -827,11 +827,11 @@ def evaluate(model, predict_dataloader, batch_size, epoch_th, dataset_name):
                 dictionary.append((prob,file_dictionary))
                
             sort_dictionary=sorted(dictionary, key=lambda tup: tup[0] )
-            num=int(0.025*len(confidence))
-            #num=122
+            #num=int(0.025*len(confidence))
+            num=122
             count=0
             print("len confidence",len(confidence))
-            print("numbbbber is :",num)
+            #print("numbbbber is :",num)
             nextfile=open("/content/Arman-Fold2/data/Fold2/valid.txt", "w")
             for key in sort_dictionary:
                 count +=1
