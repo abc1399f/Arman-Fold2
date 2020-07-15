@@ -808,7 +808,7 @@ def evaluate(model, predict_dataloader, batch_size, epoch_th, dataset_name):
     print('--------------------------------------------------------------')
     dictionary=[]
     
-    with open("/content/Arman-Fold1/data/Fold1/train.txt", "w") as writer:
+    with open("/content/Arman-Fold2/data/Fold2/train.txt", "w") as writer:
             for k in range(len(train_examples)):
                 textlist=train_examples[k].words
                 labellist=train_examples[k].labels
@@ -832,7 +832,7 @@ def evaluate(model, predict_dataloader, batch_size, epoch_th, dataset_name):
             count=0
             print("len confidence",len(confidence))
             print("numbbbber is :",num)
-            nextfile=open("/content/Arman-Fold1/data/Fold1/valid.txt", "w")
+            nextfile=open("/content/Arman-Fold2/data/Fold2/valid.txt", "w")
             for key in sort_dictionary:
                 count +=1
                 conf=key[0]
