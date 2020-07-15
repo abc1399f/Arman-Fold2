@@ -71,7 +71,7 @@ learning_rate0 = 5e-5
 lr0_crf_fc = 8e-5
 weight_decay_finetune = 1e-5 #0.01
 weight_decay_crf_fc = 5e-6 #0.005
-total_train_epochs = 20
+total_train_epochs = 1
 gradient_accumulation_steps = 1
 warmup_proportion = 0.1
 output_dir = './content/Arman-Fold2/output/'
@@ -827,8 +827,8 @@ def evaluate(model, predict_dataloader, batch_size, epoch_th, dataset_name):
                 dictionary.append((prob,file_dictionary))
                
             sort_dictionary=sorted(dictionary, key=lambda tup: tup[0] )
-            #num=int(0.025*len(confidence))
-            num=122
+            num=int(0.025*len(confidence))
+            #num=122
             count=0
             print("len confidence",len(confidence))
             print("numbbbber is :",num)
