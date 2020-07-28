@@ -348,61 +348,61 @@ def f1_score_report(y_true, y_pred, _id):
     return precision, recall, f1
     
     
-def report(y_true, y_pred, f):
+def report(y_true, y_pred):
     '''
     list= [ 'X', '[CLS]', '[SEP]', 'O', 'I-loc', 'B-pers', 'I-pers', 'I-org', 'I-pro', 'B-pro','I-fac','B-fac', 'B-loc', 'B-org', 'B-event', 'I-event']
     '''
     
     p, r, f= f1_score_report(y_true, y_pred, 4)
     print("precision, recall, F1 for I-loc", p, r, f)
-    f.write('%d %d %d\n' % (p, r, f))
+
 
     p, r, f= f1_score_report(y_true, y_pred, 12)
     print("precision, recall, F1 for B-loc", p, r, f)     
-    f.write('%d %d %d\n' % (p, r, f))
+
         
     p, r, f= f1_score_report(y_true, y_pred, 5)
     print("precision, recall, F1 for B-pers", p, r, f)
-    f.write('%d %d %d\n' % (p, r, f))
+
     
     p, r, f= f1_score_report(y_true, y_pred, 6)
     print("precision, recall, F1 for I-pers", p, r, f)
-    f.write('%d %d %d\n' % (p, r, f))
+
     
     p, r, f= f1_score_report(y_true, y_pred, 7)
     print("precision, recall, F1 for I-org", p, r, f)
-    f.write('%d %d %d\n' % (p, r, f))
+
     
     p, r, f= f1_score_report(y_true, y_pred, 13)
     print("precision, recall, F1 for B-org", p, r, f)
-    f.write('%d %d %d\n' % (p, r, f))
+
     
     p, r, f= f1_score_report(y_true, y_pred, 8)
     print("precision, recall, F1 for I-pro", p, r, f)
-    f.write('%d %d %d\n' % (p, r, f))
+
     
     p, r, f= f1_score_report(y_true, y_pred, 9)
     print("precision, recall, F1 for B-pro", p, r, f) 
-    f.write('%d %d %d\n' % (p, r, f))
+
     
     p, r, f= f1_score_report(y_true, y_pred, 10)
     print("precision, recall, F1 for I-fac", p, r, f)
-    f.write('%d %d %d\n' % (p, r, f))
+
     
     p, r, f= f1_score_report(y_true, y_pred, 11)
     print("precision, recall, F1 for B-fac", p, r, f)   
-    f.write('%d %d %d\n' % (p, r, f))
+
  
        
     p, r, f= f1_score_report(y_true, y_pred, 14)
     print("precision, recall, F1 for B-event", p, r, f)   
-    f.write('%d %d %d\n' % (p, r, f))
+
     
     p, r, f= f1_score_report(y_true, y_pred, 15)
     print("precision, recall, F1 for I-event", p, r, f)  
-    f.write('%d %d %d\n' % (p, r, f))
+
     
-def f1_score(y_true, y_pred,f):
+def f1_score(y_true, y_pred):
     '''
     0,1,2,3 are [CLS],[SEP],[X],O
     '''
@@ -432,7 +432,6 @@ def f1_score(y_true, y_pred,f):
             f1=1.0
         else:
             f1=0
-    f.write('%d %d %d\n' % (precision, recall, f1))
     return precision, recall, f1
 
 #%%
@@ -868,8 +867,7 @@ def evaluate(model, predict_dataloader, batch_size, epoch_th, dataset_name):
             correct += valid_predicted.eq(valid_label_ids).sum().item()
 
     test_acc = correct/total
-    out = open("/content/Arman-Fold2/output/output-NLC.txt", "w")
-    precision, recall, f1 = f1_score(np.array(all_labels), np.array(all_preds), out)
+    precision, recall, f1 = f1_score(np.array(all_labels), np.array(all_preds))
     #print(all_labels)
     #print(all_preds)
     all_labels_convert=[]
@@ -885,8 +883,7 @@ def evaluate(model, predict_dataloader, batch_size, epoch_th, dataset_name):
     #print(all_labels_convert)
     #print(all_preds_convert)
     #report = classification_report(all_labels_convert, all_preds_convert,digits=4)
-    report(np.array(all_labels), np.array(all_preds), out)
-    out.close()
+    report(np.array(all_labels), np.array(all_preds))
     end = time.time()
     print('Epoch:%d, Acc:%.2f, Precision: %.2f, Recall: %.2f, F1: %.2f on %s, Spend:%.3f minutes for evaluation' \
         % (epoch_th, 100.*test_acc, 100.*precision, 100.*recall, 100.*f1, dataset_name,(end-start)/60.0))
