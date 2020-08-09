@@ -786,19 +786,24 @@ def evaluate(model, predict_dataloader, batch_size, epoch_th, dataset_name):
             all_labels.extend(valid_label_ids.tolist())
             count=0
             for i in range(len(value)):
-                sigma=0
-                if value[i][0].size() == torch.Size([3]):
-                  count=count+1
-                  print("3",count)
-                if value[i][0].size() == torch.Size([2]):
-                  count=count+1
-                  print("2",count)
-                else:
+
+                    sigma=0
+                
                     for j in range(len(value[i])):
-                        print(value[i][j].item())
-                        if value[i][j].item() > 0:
-                          #print("miniiii",sigma)
-                          sigma= sigma+ (value[i][j].item() * math.log(value[i][j].item()))
+                      if value[i][j].size() == torch.Size([3]):
+                        count=count+1
+                        print("3",count)
+                      if value[i][j].size() == torch.Size([16]):
+                        count=count+1
+                        print("16",count)
+                
+                        
+                      else:
+                          print(value[i])
+                          print(value[i][j].item())
+                          if value[i][j].item() > 0:
+                            #print("miniiii",sigma)
+                            sigma= sigma+ (value[i][j].item() * math.log(value[i][j].item()))
                     confidence.append(sigma)
                     print("sigmaaaaaa",sigma)
             # print(len(valid_label_ids),len(valid_predicted),len(valid_label_ids)==len(valid_predicted))
