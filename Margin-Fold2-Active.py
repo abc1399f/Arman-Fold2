@@ -784,7 +784,8 @@ def evaluate(model, predict_dataloader, batch_size, epoch_th, dataset_name):
             all_preds.extend(valid_predicted.tolist())
             all_labels.extend(valid_label_ids.tolist())
             for i in range(len(value)):
-                
+                predicted_label_seq_ids[i]
+                print(value[i][0])
                 confidence.append(value[i][0]-value[i][1])
             # print(len(valid_label_ids),len(valid_predicted),len(valid_label_ids)==len(valid_predicted))
             total += len(valid_label_ids)
