@@ -785,9 +785,9 @@ def evaluate(model, predict_dataloader, batch_size, epoch_th, dataset_name):
             all_labels.extend(valid_label_ids.tolist())
             count=0
             for i in range(len(value)):
-                print(type(value[i][0]))
-                print(predicted_label_seq_ids[i])
-                print(value[i][0])
+                #print(type(value[i][0]))
+                #print(predicted_label_seq_ids[i])
+                #print(value[i][0])
                 
                 if value[i][0].size() == torch.Size([3]):
                   count=count+1
